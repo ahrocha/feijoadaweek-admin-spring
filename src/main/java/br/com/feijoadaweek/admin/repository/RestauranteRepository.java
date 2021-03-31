@@ -17,6 +17,8 @@ import br.com.feijoadaweek.admin.model.Restaurante;
 @Repository
 public interface RestauranteRepository extends JpaRepository<Restaurante, Integer>{
 
+	public List<Restaurante> findTop100ByOrderByDataDesc();
+	
 	List<Restaurante> findBySlug(String slug);
 
 //	@PersistenceContext
