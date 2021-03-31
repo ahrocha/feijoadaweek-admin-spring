@@ -66,7 +66,7 @@ public class LoginController {
 		response.addCookie(tokenCookie);
 		
 		HttpSession sessao = request.getSession();
-	    sessao.setAttribute("usuarioLogado", email);
+	    sessao.setAttribute("usuarioLogado", true);
 		
 		return "login";
 	}
@@ -76,6 +76,11 @@ public class LoginController {
 		
 		System.out.println("logout controller");
 		// @TODO kill session, delete cookies, etc...
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+
+        HttpSession sessao = req.getSession();
+		sessao.invalidate();
 		
 		return "login";
 	}

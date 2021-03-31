@@ -10,6 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -22,28 +23,29 @@ public class TransactionFilter implements Filter  {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("filtro sendo executado");
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-		
+
+        HttpSession sessao = req.getSession();
+
 		Cookie[] cookies = req.getCookies();
 		String idTokenString = null;
 		
 		for(Cookie cookie : cookies) {
-			System.out.println("COOKIE " + cookie.getName() + "  " + cookie.getValue());
 			
 			if ("token".equalsIgnoreCase(cookie.getName())) {
 				// @TODO validate
 				idTokenString = cookie.getValue();
 			}
-			System.out.println("idTokenString " + idTokenString);
 		}
 		
 		if (idTokenString != null) {
 			
 			GoogleSigninService googleSigninService = new GoogleSigninService();
 			googleSigninService.signin(idTokenString);
+
+		    System.out.println("está logado ? " + sessao.getAttribute("usuarioLogado"));
 			
 			System.out.println(googleSigninService.getEmail());
 			
@@ -53,6 +55,7 @@ public class TransactionFilter implements Filter  {
 			res.addCookie(tokenCookie);
 			chain.doFilter(request, res);
 		} else {
+			sessao.invalidate();
 			res.sendRedirect("/login");
 		}
 	}
