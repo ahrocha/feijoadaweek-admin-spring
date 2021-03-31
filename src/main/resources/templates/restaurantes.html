@@ -3,12 +3,12 @@
 <head th:replace="~{base :: head}"></head>
 <body>
 
-<nav th:replace="~{base :: nav}"></nav>	
+	<nav th:replace="~{base :: nav}"></nav>
 
 	<header th:replace="~{base :: header}">Topo</header>
 
 	<div class="container">
-	
+
 		<h1>FeijoadaWeek Admin</h1>
 
 		<form method="post">
@@ -32,13 +32,17 @@
 		</form>
 
 		<div class="card mb-3">
-			<h2 class="card-title">Últimos Pratos cadastrados</h2>
+			<h2 class="card-title">Últimos Restaurantes cadastrados</h2>
 			<div class="card-body">
-				<ul th:each="prato : ${pratos}">
-					<li><a th:text="${prato.restaurante.nome}"
-						th:href="@{/restaurante/} + ${prato.restaurante.slug}"
-						class="card-link">edit</a></li>
-				</ul>
+				<table>
+					<tr th:each="restaurante : ${restaurantes}">
+						<td><span th:text="${restaurante.nome}">Nome do
+								restaurante</span></td>
+						<td><a th:text="${restaurante.slug}"
+							th:href="@{/restaurante/} + ${restaurante.slug}"
+							class="card-link">edit</a></td>
+					</tr>
+				</table>
 			</div>
 		</div>
 	</div>
