@@ -37,17 +37,15 @@ public class GoogleSigninService implements SigninInterface  {
 
 		GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jacksonFactory)
 				.setAudience(Collections.singletonList(System.getenv("feijucaGoogle"))).build();
+
 		GoogleIdToken idToken;
-		
-		System.out.println("Google Token " + System.getenv("feijucaGoogle"));
 
 		try {
 			idToken = verifier.verify(idTokenString);
 			if (idToken != null) {
-				// payload contem userdata informado pelo Google
 				this.payload = idToken.getPayload();
 				this.email = payload.getEmail();
-
+				System.out.println("email logado " + this.email);
 			} else {
 				verifier.getIssuer();
 				System.out.println("Invalid ID token.");
@@ -83,8 +81,7 @@ public class GoogleSigninService implements SigninInterface  {
 
 	@Override
 	public String getEmail() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.email;
 	}
 
 }
