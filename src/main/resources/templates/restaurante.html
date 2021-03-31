@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="~{base :: head}"></head>
+<body>
+
+<nav th:replace="~{base :: nav}"></nav>	
+
+	<header th:replace="~{base :: header}">Topo</header>
+
+	<div class="container">
+		<h1>FeijoadaWeek Admin</h1>
+		<h2 th:text="${restaurante.nome}"></h2>
+
+<form method="post">
+<div class="card mb-3">
+<div class="card-title">Cadastrar prato neste restaurante</div>
+<div class="card-body">
+
+<div>
+<label for="nome">Nome</label>
+<input type="text" name="nome" id="nome"> 
+</div>
+
+<div>
+<label for="descricao">Descrição</label>
+<input type="text" name="descricao" id="descricao"> 
+</div>
+
+<div>
+<label for="foto">Foto (url)</label>
+<input type="text" name="foto" id="foto"> 
+</div>
+
+<div>
+<label for="video">Vídeo (url)</label>
+<input type="text" name="video" id="video"> 
+</div>
+
+<button type="submit">Cadastrar</button>
+</div>
+</div>
+</form>
+
+		<div th:each="prato : ${pratos}" class="card mb-3">
+		<div class="card-body">
+			<p class="card-subtitle mb-2 text-muted" th:text="${'Data: ' + #temporals.format(prato.data, 'dd/MM/yyyy')}"></p>
+			<p class="card-text" th:text="${prato.descricao}"></p>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="~{base :: footer}">Footer</footer>
+
+</body>
+</html>

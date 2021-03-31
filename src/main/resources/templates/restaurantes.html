@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="~{base :: head}"></head>
+<body>
+
+<nav th:replace="~{base :: nav}"></nav>	
+
+	<header th:replace="~{base :: header}">Topo</header>
+
+	<div class="container">
+	
+		<h1>FeijoadaWeek Admin</h1>
+
+		<form method="post">
+			<div class="card mb-3">
+				<div class="card-title">Novo restaurante</div>
+				<div class="card-body">
+
+					<div>
+						<label for="nome">Nome</label> <input type="text" name="nome"
+							id="nome">
+					</div>
+
+					<div>
+						<label for="slug">slug</label> <input type="text" name="slug"
+							id="slug">
+					</div>
+
+					<button type="submit">Cadastrar</button>
+				</div>
+			</div>
+		</form>
+
+		<div class="card mb-3">
+			<h2 class="card-title">Últimos Pratos cadastrados</h2>
+			<div class="card-body">
+				<ul th:each="prato : ${pratos}">
+					<li><a th:text="${prato.restaurante.nome}"
+						th:href="@{/restaurante/} + ${prato.restaurante.slug}"
+						class="card-link">edit</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="~{base :: footer}">Footer</footer>
+
+</body>
+</html>
