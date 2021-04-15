@@ -80,8 +80,22 @@ public class RestauranteController {
 		return this.list(model);
 	}
 
-	@RequestMapping("/restaurante/{slug}")
-	public String show(@PathVariable("slug") String slug, @Valid RequisicaoNovoPrato requisicao, BindingResult result,
+	@GetMapping("/restaurante/{slug}")
+	public String show(@PathVariable("slug") String slug, RequisicaoNovoPrato requisicao, Model model) {
+
+		List<Restaurante> restaurantes = restauranteRepository.findBySlug(slug);
+		Restaurante restaurante = restaurantes.get(0);
+
+		List<Prato> pratos = pratoRepository.findByRestaurante(restaurante);
+
+		model.addAttribute("restaurante", restaurante);
+		model.addAttribute("pratos", pratos);
+
+		return "restaurante";
+	}
+
+	@PostMapping("/restaurante/{slug}")
+	public String save(@PathVariable("slug") String slug, @Valid RequisicaoNovoPrato requisicao, BindingResult result,
 			Model model) {
 
 		List<Restaurante> restaurantes = restauranteRepository.findBySlug(slug);
@@ -91,8 +105,14 @@ public class RestauranteController {
 			for (ObjectError error : result.getAllErrors()) {
 				System.out.println(error.getDefaultMessage());
 			}
+
+			List<Prato> pratos = pratoRepository.findByRestaurante(restaurante);
+
+			model.addAttribute("restaurante", restaurante);
+			model.addAttribute("pratos", pratos);
+			
 			System.out.println("tem erro");
-			return "restaurantes";
+			return "restaurante";
 		}
 
 		System.out.println("inicio insert");

@@ -3,7 +3,7 @@
 <head th:replace="~{base :: head}"></head>
 <body>
 
-<nav th:replace="~{base :: nav}"></nav>	
+	<nav th:replace="~{base :: nav}"></nav>
 
 	<header th:replace="~{base :: header}">Topo</header>
 
@@ -11,40 +11,48 @@
 		<h1>FeijoadaWeek Admin</h1>
 		<h2 th:text="${restaurante.nome}"></h2>
 
-<form method="post">
-<div class="card mb-3">
-<div class="card-title">Cadastrar prato neste restaurante</div>
-<div class="card-body">
+		<form th:object="${requisicaoNovoPrato}" method="post">
+			<div class="card mb-3">
+				<div class="card-title">
+					<h3>Cadastrar prato neste restaurante</h3>
+				</div>
+				<div class="card-body">
 
-<div>
-<label for="nome">Nome</label>
-<input type="text" name="nome" id="nome"> 
-</div>
+					<div>
+						<label for="nome">Nome</label> <input type="text"
+							th:field="*{descricao}" value="feijoada" class="form-control" />
+					</div>
 
-<div>
-<label for="descricao">Descrição</label>
-<input type="text" name="descricao" id="descricao"> 
-</div>
+					<div>
+						<label for="descricao">Descrição</label>
+						<textarea th:field="*{descricao}" th:errorClass="is-invalid"
+							class="form-control"></textarea>
+						<small>Copie a url de uma boa imagem do produto e cole
+							aqui para ajudar.</small>
+						<div class="invalid-feedback" th:errors="*{descricao}">Erros da
+							url da imagem</div>
+					</div>
 
-<div>
-<label for="foto">Foto (url)</label>
-<input type="text" name="foto" id="foto"> 
-</div>
+					<div>
+						<label for="foto">Foto (url)</label> <input type="text"
+							th:field="*{foto}" class="form-control" />
+					</div>
 
-<div>
-<label for="video">Vídeo (url)</label>
-<input type="text" name="video" id="video"> 
-</div>
+					<div>
+						<label for="video">Vídeo (url)</label> <input type="text"
+							th:field="*{video}" class="form-control" />
+					</div>
 
-<button type="submit">Cadastrar</button>
-</div>
-</div>
-</form>
+					<button type="submit" class="form-control">Cadastrar</button>
+				</div>
+			</div>
+		</form>
 
 		<div th:each="prato : ${pratos}" class="card mb-3">
-		<div class="card-body">
-			<p class="card-subtitle mb-2 text-muted" th:text="${'Data: ' + #temporals.format(prato.data, 'dd/MM/yyyy')}"></p>
-			<p class="card-text" th:text="${prato.descricao}"></p>
+			<div class="card-body">
+				<p class="card-subtitle mb-2 text-muted"
+					th:text="${'Data: ' + #temporals.format(prato.data, 'dd/MM/yyyy')}"></p>
+				<p class="card-text" th:text="${prato.descricao}"></p>
 			</div>
 		</div>
 
