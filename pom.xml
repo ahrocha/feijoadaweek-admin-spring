@@ -9,7 +9,7 @@
 		<version>2.4.3</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.feijoadaweek</groupId>
+	<groupId>br.com.feijoadaweek.admin</groupId>
 	<artifactId>admin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>admin do blog feijoadaweek</name>

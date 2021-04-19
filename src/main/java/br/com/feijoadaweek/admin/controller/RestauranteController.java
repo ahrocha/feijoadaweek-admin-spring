@@ -107,14 +107,10 @@ public class RestauranteController {
 			return "restaurante";
 		}
 
-		System.out.println("inicio insert");
 		Prato prato = requisicao.toPrato();
 		prato.setRestaurante(restaurante);
 
-		System.out.println("vai gravar");
 		pratoRepository.save(prato);
-		System.out.println("acabou de gravar");
-		//restauranteRepository.save(restaurante);
 
 		List<Prato> pratos = pratoRepository.findByRestaurante(restaurante);
 
