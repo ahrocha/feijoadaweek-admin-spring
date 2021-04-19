@@ -131,13 +131,11 @@ public class Prato {
 	}
 
 	public String getFoto() {
-		return foto;
+		return this.foto;
 	}
 
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	
-	
 
 }

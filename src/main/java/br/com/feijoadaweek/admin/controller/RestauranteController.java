@@ -47,9 +47,6 @@ public class RestauranteController {
 	@GetMapping("/restaurantes")
 	public String list(Model model) {
 
-		System.out.println("listando restaurantes");
-
-//		List<Prato> pratos = pratoRepository.findTop10ByOrderByDataDesc();
 		List<Restaurante> restaurantes = restauranteRepository.findTop100ByOrderByDataDesc();
 
 		model.addAttribute("restaurantes", restaurantes);
@@ -60,8 +57,6 @@ public class RestauranteController {
 	@PostMapping("/restaurantes")
 	public String create(Model model, @Valid RequisicaoNovoRestaurante requisicao, BindingResult result) {
 
-		System.out.println("criando restaurante");
-		
 		if (result.hasErrors()) {
 			for (ObjectError error : result.getAllErrors()) {
 				System.out.println(error.getDefaultMessage());
@@ -71,8 +66,6 @@ public class RestauranteController {
 		}
 
 		Restaurante restaurante = requisicao.toRestaurante();
-		System.out.println("adicionando restaurante " + restaurante.getNome());
-		System.out.println("adicionando slug do restaurante " + restaurante.getSlug());
 
 		// @TODO validar slug repetido
 		restauranteRepository.save(restaurante);
@@ -110,19 +103,23 @@ public class RestauranteController {
 
 			model.addAttribute("restaurante", restaurante);
 			model.addAttribute("pratos", pratos);
-			
-			System.out.println("tem erro");
+
 			return "restaurante";
 		}
 
 		System.out.println("inicio insert");
 		Prato prato = requisicao.toPrato();
 		prato.setRestaurante(restaurante);
-		System.out.println(prato.getNome());
-		System.out.println("fim insert");
+
+		System.out.println("vai gravar");
+		pratoRepository.save(prato);
+		System.out.println("acabou de gravar");
+		//restauranteRepository.save(restaurante);
 
 		List<Prato> pratos = pratoRepository.findByRestaurante(restaurante);
 
+		// @todo se gravar com sucesso, limpar o formulário
+		// @todo exibir mensagem de sucesso
 		model.addAttribute("restaurante", restaurante);
 		model.addAttribute("pratos", pratos);
 

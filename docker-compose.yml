@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+
+  feijoadaweek_admin:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: feijoadaweek_admin
+    hostname: feijoadaweekadmin
+    environment:
+      FEIJUCA_DATABASE_URL: ${FEIJUCA_DATABASE_URL}
+      FEIJUCA_DATABASE_USERNAME: ${FEIJUCA_DATABASE_USERNAME}
+      FEIJUCA_DATABASE_PASSWORD: ${FEIJUCA_DATABASE_PASSWORD}
+      expose: 8080
+    restart: unless-stopped

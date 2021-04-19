@@ -30,6 +30,7 @@ public class RequisicaoNovoPrato {
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -37,45 +38,57 @@ public class RequisicaoNovoPrato {
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
 	public String getDescricao() {
 		return descricao;
 	}
+	
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
 	public String getVideo() {
 		return video;
 	}
+	
 	public void setVideo(String video) {
 		this.video = video;
 	}
+	
 	public String getData() {
 		return data;
 	}
+
 	public void setData(String data) {
 		this.data = data;
 	}
+
 	public String getAnalise() {
 		return analise;
 	}
+
 	public void setAnalise(String analise) {
 		this.analise = analise;
 	}
-	public String getFoto() {
-		return foto;
-	}
+
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
+
+	public String getFoto() {
+		return this.foto;
+	}
+
 	public Prato toPrato() {
 		Prato prato = new Prato();
-		prato.setNome(getNome());
-		prato.setFoto(getDescricao());
-		prato.setFoto(getFoto());
-		prato.setFoto(getVideo());
+		prato.setNome(this.getNome());
+		prato.setDescricao(this.getDescricao());
+		prato.setFoto(this.getFoto());
+		prato.setVideo(this.getVideo());
 		prato.setData(LocalDateTime.now());
 		prato.setStatus(1);
 		return prato;
