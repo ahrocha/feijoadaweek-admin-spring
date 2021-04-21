@@ -29,8 +29,8 @@
 							class="form-control"></textarea>
 						<small>Copie a url de uma boa imagem do produto e cole
 							aqui para ajudar.</small>
-						<div class="invalid-feedback" th:errors="*{descricao}">Erros da
-							url da imagem</div>
+						<div class="invalid-feedback" th:errors="*{descricao}">Erros
+							da url da imagem</div>
 					</div>
 
 					<div>
@@ -54,6 +54,11 @@
 					th:text="${'Data: ' + #temporals.format(prato.data, 'dd/MM/yyyy')}"></p>
 				<p class="card-text" th:text="${prato.descricao}"></p>
 			</div>
+			<div>
+				<img class="img-thumbnail" th:src="${prato.foto}" src="" />
+			</div>
+			
+			<div th:remove="tag" th:utext="${prato.descricao}"></div>
 		</div>
 
 	</div>
