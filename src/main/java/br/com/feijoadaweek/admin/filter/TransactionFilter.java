@@ -39,19 +39,14 @@ public class TransactionFilter implements Filter  {
 				idTokenString = cookie.getValue();
 			}
 		}
-		
+
+		// @TODO usar SESSION / COOKIES
 		if (idTokenString != null) {
-			
 			GoogleSigninService googleSigninService = new GoogleSigninService();
 			googleSigninService.signin(idTokenString);
+			
+//			System.out.println(googleSigninService.getEmail());
 
-		    System.out.println("está logado ? " + sessao.getAttribute("usuarioLogado"));
-		    
-		    System.out.println("email admin " + System.getenv("FEIJUCA_ADMIN_EMAIL"));
-			
-			System.out.println(googleSigninService.getEmail());
-			
-			System.out.println("logado");
 			Cookie tokenCookie = new Cookie("token",idTokenString);
 			tokenCookie.setMaxAge(60*60);
 			res.addCookie(tokenCookie);
