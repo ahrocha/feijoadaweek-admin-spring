@@ -46,6 +46,8 @@ public class TransactionFilter implements Filter  {
 			googleSigninService.signin(idTokenString);
 
 		    System.out.println("está logado ? " + sessao.getAttribute("usuarioLogado"));
+		    
+		    System.out.println("email admin " + System.getenv("FEIJUCA_ADMIN_EMAIL"));
 			
 			System.out.println(googleSigninService.getEmail());
 			

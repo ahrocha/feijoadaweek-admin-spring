@@ -56,6 +56,7 @@ public class LoginController {
 		}
 
         // @TODO validar admin no banco de dados
+        // @TODO tirar isso do controller
         System.out.println("email admin " + System.getenv("FEIJUCA_ADMIN_EMAIL"));
         if (!email.equals(System.getenv("FEIJUCA_ADMIN_EMAIL"))) {
         	System.out.println("não é o Andrey");
