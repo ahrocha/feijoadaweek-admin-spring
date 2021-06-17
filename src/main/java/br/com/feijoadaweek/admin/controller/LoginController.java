@@ -56,7 +56,8 @@ public class LoginController {
 		}
 
         // @TODO validar admin no banco de dados
-        if (!email.equals("ahrocha@gmail.com")) {
+        System.out.println("email admin " + System.getenv("FEIJUCA_ADMIN_EMAIL"));
+        if (!email.equals(System.getenv("FEIJUCA_ADMIN_EMAIL"))) {
         	System.out.println("não é o Andrey");
         	return "login";
         }
