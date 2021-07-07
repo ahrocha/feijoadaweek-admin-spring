@@ -18,13 +18,13 @@
 				</div>
 				<div class="card-body">
 
-					<div>
-						<label for="nome">Nome</label> <input type="text"
+					<div class="mb-3">
+						<label for="nome" class="form-label">Nome</label> <input type="text"
 							th:field="*{nome}" value="feijoada" class="form-control" />
 					</div>
 
-					<div>
-						<label for="descricao">Descrição</label>
+					<div class="mb-3">
+						<label for="descricao" class="form-label">Descrição</label>
 						<textarea th:field="*{descricao}" th:errorClass="is-invalid"
 							class="form-control"></textarea>
 						<small>Copie a url de uma boa imagem do produto e cole
@@ -33,17 +33,19 @@
 							da url da imagem</div>
 					</div>
 
-					<div>
-						<label for="foto">Foto (url)</label> <input type="text"
+					<div class="mb-3">
+						<label for="foto" class="form-label">Foto (url) fotos de horizontais a quadradas ficam melhor</label> <input type="text"
 							th:field="*{foto}" class="form-control" />
 					</div>
 
-					<div>
-						<label for="video">Vídeo (url)</label> <input type="text"
+					<div class="mb-3">
+						<label for="video" class="form-label">Vídeo (url)</label> <input type="text"
 							th:field="*{video}" class="form-control" />
 					</div>
-
-					<button type="submit" class="form-control">Cadastrar</button>
+					
+					<div class="mb-3">
+						<button type="submit" class="btn btn-primary">Cadastrar</button>
+					</div>
 				</div>
 			</div>
 		</form>
