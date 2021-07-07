@@ -57,6 +57,7 @@ public class LoginController {
 
         // @TODO validar admin no banco de dados
         // @TODO tirar isso do controller
+        // @TODO criar tabela de quem pode acessar o banco
 
         if (!email.equals(System.getenv("FEIJUCA_ADMIN_EMAIL"))) {
         	System.out.println("E-mail não autorizado.");

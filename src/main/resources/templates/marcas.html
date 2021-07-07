@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="~{base :: head}"></head>
+<body>
+
+	<nav th:replace="~{base :: nav}"></nav>
+
+	<header th:replace="~{base :: header}">Topo</header>
+
+	<div class="container">
+
+		<h1>FeijoadaWeek Admin</h1>
+
+		<form method="post">
+			<div class="card mb-3">
+				<div class="card-title">Nova marca de cerveja</div>
+				<div class="card-body">
+
+					<div class="mb-3">
+						<label for="nome" class="form-label">Nome</label> <input type="text" name="nome"
+							id="nome" class="form-control">
+					</div>
+
+
+					<div class="mb-3">
+						<label for="slug" class="form-label">slug</label> <input type="text" name="slug"
+							id="slug" class="form-control">
+					</div>
+
+
+					<div class="mb-3">
+						<button type="submit" class="btn btn-primary">Cadastrar</button>
+					</div>
+				</div>
+			</div>
+		</form>
+
+		<div class="card mb-3">
+			<h2 class="card-title">Últimas marcas cadastradas</h2>
+			<div class="card-body">
+				<table>
+					<tr th:each="marca : ${marcas}">
+						<td><span th:text="${marca.nome}">Nome</span></td>
+						<td><a th:href="@{/marca/} + ${marca.slug}"
+							class="card-link">edit</a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="~{base :: footer}">Footer</footer>
+
+</body>
+</html>

@@ -22,8 +22,20 @@ public class Foto {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name="prato_id", nullable=false)
+	@JoinColumn(name="restaurante_id", nullable=true)
+	private Restaurante restaurante;
+	
+	@ManyToOne
+	@JoinColumn(name="prato_id", nullable=true)
 	private Prato prato;
+	
+	@ManyToOne
+	@JoinColumn(name="marca_id", nullable=true)
+	private Marca marca;
+	
+	@ManyToOne
+	@JoinColumn(name="cerveja_id", nullable=true)
+	private Cerveja cerveja;
 
 	private String nome;
 	
@@ -41,14 +53,6 @@ public class Foto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-//	public Prato getPrato() {
-//		return prato;
-//	}
-//
-//	public void setPrato(Prato prato) {
-//		this.prato = prato;
-//	}
 
 	public String getNome() {
 		return nome;
@@ -80,6 +84,38 @@ public class Foto {
 
 	public void setData(LocalDateTime data) {
 		this.data = data;
+	}
+
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}
+
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
+	}
+
+	public Prato getPrato() {
+		return prato;
+	}
+
+	public void setPrato(Prato prato) {
+		this.prato = prato;
+	}
+
+	public Marca getMarca() {
+		return marca;
+	}
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+
+	public Cerveja getCerveja() {
+		return cerveja;
+	}
+
+	public void setCerveja(Cerveja cerveja) {
+		this.cerveja = cerveja;
 	}
 
 	
